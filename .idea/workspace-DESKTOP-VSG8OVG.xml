@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8ddf40eb-899d-4855-b10e-018b6a113b97" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace-DUIP78730.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/processing/box_whisker_graphs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/processing/clean_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/processing/dispersion_graphs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/processing/get_outputs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/processing/heatmap.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/processing/line_graphs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/processing/time_split.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/test_preprocessing/test_clean_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/test_preprocessing/test_time_split.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/test_processing/test_box_whisker_graphs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/test_processing/test_dispersion_graphs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/test_processing/test_get_outputs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/test_processing/test_heatmap.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/test_processing/test_line_graphs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/processing/descriptive_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/processing/descriptive_stats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/processing/scatter_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/processing/scatter_graphs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/test_processing/test_descriptive_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test_processing/test_descriptive_stats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/test_processing/test_scatter_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test_processing/test_scatter_graphs.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jupyter Notebook" />
+        <option value="Python Script" />
+        <option value="Python Unit Test" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2lVh4CUHnOYS3i0onj6sqWUvdaD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for test_preprocessing.test_clean_data.MyTestCase.test_remove_anomalies.executor": "Run",
+    "Python tests.Python tests for test_preprocessing.test_time_split.MyTestCase.executor": "Run",
+    "Python tests.Python tests for test_preprocessing.test_time_split.MyTestCase.test_date_time_column_split.executor": "Run",
+    "Python tests.Python tests for test_preprocessing.test_time_split.MyTestCase.test_day_of_week_time_column_split.executor": "Run",
+    "Python tests.Python tests for test_preprocessing.test_time_split.MyTestCase.test_night_day_grouping.executor": "Run",
+    "Python tests.Python tests for test_preprocessing.test_time_split.MyTestCase.test_split_dictionary.executor": "Debug",
+    "Python tests.Python tests for test_preprocessing.test_time_split.MyTestCase.test_time_split_grouping.executor": "Debug",
+    "Python tests.Python tests for test_preprocessing.test_time_split.MyTestCase.test_time_split_grouping_2_groups_12_hours.executor": "Debug",
+    "Python tests.Python tests for test_preprocessing.test_time_split.MyTestCase.test_time_split_grouping_8_groups_3_hours.executor": "Debug",
+    "Python tests.Python tests for test_preprocessing.test_time_split.MyTestCase.test_time_split_grouping_8_groups_3_hours_with_group_time.executor": "Run",
+    "Python tests.Python tests for test_processing.test_box_whisker_graphs.MyTestCase.executor": "Run",
+    "Python tests.Python tests for test_processing.test_box_whisker_graphs.MyTestCase.test_by_location_one_variable__grouped_hours_multiple_sites.executor": "Run",
+    "Python tests.Python tests for test_processing.test_box_whisker_graphs.MyTestCase.test_by_location_one_variable_multiple_sites.executor": "Run",
+    "Python tests.Python tests for test_processing.test_box_whisker_graphs.MyTestCase.test_by_multiple_variables_one_site.executor": "Run",
+    "Python tests.Python tests for test_processing.test_box_whisker_graphs.MyTestCase.test_means_data_by_day_of_week_box_whisker_plot_multiple_variables.executor": "Run",
+    "Python tests.Python tests for test_processing.test_box_whisker_graphs.MyTestCase.test_means_data_by_hour_box_whisker_plot_multiple_variables.executor": "Run",
+    "Python tests.Python tests for test_processing.test_box_whisker_graphs.MyTestCase.test_multiple_sites_multiple_variables.executor": "Run",
+    "Python tests.Python tests for test_processing.test_box_whisker_graphs.MyTestCase.test_multiple_sites_one_variable.executor": "Debug",
+    "Python tests.Python tests for test_processing.test_box_whisker_graphs.MyTestCase.test_on_site_multiple_variables_overall.executor": "Run",
+    "Python tests.Python tests for test_processing.test_box_whisker_graphs.MyTestCase.test_on_site_multiple_variables_overall_with_cleaned_data.executor": "Run",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.executor": "Run",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_dataframe.executor": "Run",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_descriptive_stats_multiple_locations.executor": "Run",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_descriptive_stats_multiple_locations_multiple_variables.executor": "Run",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_descriptive_stats_multiple_locations_multiple_variables_multiple_groups.executor": "Run",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_output_dataframe_contains_device_id.executor": "Debug",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_output_dataframe_contains_group_time.executor": "Debug",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_output_dataframe_to_csv_in_output_directory.executor": "Debug",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_returns_descriptive_stats_by_several_time_categories.executor": "Run",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_returns_descriptive_stats_by_time_categories.executor": "Run",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_returns_mean.executor": "Debug",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_returns_mean_of_first_variable.executor": "Debug",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_returns_mean_of_second_variable.executor": "Debug",
+    "Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_variable_in_dataframe.executor": "Debug",
+    "Python tests.Python tests for test_processing.test_dispersion_graphs.MyTestCase.executor": "Run",
+    "Python tests.Python tests for test_processing.test_dispersion_graphs.MyTestCase.test_all_data_by_day_dispersion_plot_one_variable.executor": "Run",
+    "Python tests.Python tests for test_processing.test_dispersion_graphs.MyTestCase.test_all_data_by_hour_dispersion_plot_one_variable.executor": "Run",
+    "Python tests.Python tests for test_processing.test_dispersion_graphs.MyTestCase.test_means_data_by_date_one_variable_multiple_sites.executor": "Run",
+    "Python tests.Python tests for test_processing.test_dispersion_graphs.MyTestCase.test_means_data_by_hour_dispersion_plot_multiple_variables.executor": "Run",
+    "Python tests.Python tests for test_processing.test_dispersion_graphs.MyTestCase.test_means_data_by_hour_one_variable_multiple_sites.executor": "Run",
+    "Python tests.Python tests for test_processing.test_dispersion_graphs.MyTestCase.test_means_data_by_time_one_variable_multiple_sites.executor": "Run",
+    "Python tests.Python tests for test_processing.test_dispersion_graphs.MyTestCase.test_means_data_multiple_locations_by_group.executor": "Run",
+    "Python tests.Python tests for test_processing.test_get_outputs.MyTestCase.executor": "Run",
+    "Python tests.Python tests for test_processing.test_get_outputs.MyTestCase.test_outputs_focused.executor": "Run",
+    "Python tests.Python tests for test_processing.test_get_outputs.MyTestCase.test_outputs_into_directory.executor": "Run",
+    "Python tests.Python tests for test_processing.test_get_outputs.MyTestCase.test_r2_all.executor": "Run",
+    "Python tests.Python tests for test_processing.test_heatmap.MyTestCase.test_all_data_by_hour_dispersion_plot_one_variable.executor": "Run",
+    "Python tests.Python tests for test_processing.test_heatmap.MyTestCase.test_heatmap.executor": "Run",
+    "Python tests.Python tests for test_processing.test_line_graph.MyTestCase.executor": "Run",
+    "Python tests.Python tests for test_processing.test_line_graphs.MyTestCase.executor": "Run",
+    "Python tests.Python tests for test_processing.test_line_graphs.MyTestCase.test_saved_line_graph.executor": "Run",
+    "Python tests.Python tests for test_processing.test_line_graphs.MyTestCase.test_saved_line_graph_two_locations.executor": "Run",
+    "Python tests.Python tests for test_processing.test_line_graphs.MyTestCase.test_saved_line_graph_two_variables_same_location.executor": "Run",
+    "Python tests.Python tests for test_processing.test_scatter_graphs.MyTestCase.executor": "Run",
+    "Python tests.Python tests for test_processing.test_scatter_graphs.MyTestCase.test_output_dataframe_to_csv_in_output_directory.executor": "Run",
+    "Python tests.Python tests for test_processing.test_scatter_graphs.MyTestCase.test_r2.executor": "Run",
+    "Python tests.Python tests for test_processing.test_scatter_graphs.MyTestCase.test_r2_with_multiple_variables.executor": "Run",
+    "Python tests.Python tests for test_processing.test_scatter_graphs.MyTestCase.test_saved_scatter_plot.executor": "Run",
+    "Python tests.Python tests for test_processing.test_scatter_graphs.MyTestCase.test_saved_scatter_plot_with_multiple_variables.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/lzzrw/OneDrive - The University of Nottingham/Coding/pythonProject",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\rache\OneDrive - The University of Nottingham (1)\Coding\pythonProject\src\processing" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests for test_processing.test_get_outputs.MyTestCase.test_r2_all">
+    <configuration name="Python tests for test_processing.test_descriptive_stats.MyTestCase" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_processing.test_descriptive_stats.MyTestCase&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_processing.test_descriptive_stats.MyTestCase.test_output_dataframe_contains_group_time" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_processing.test_descriptive_stats.MyTestCase.test_output_dataframe_contains_group_time&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_processing.test_get_outputs.MyTestCase.test_outputs_focused" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_processing.test_get_outputs.MyTestCase.test_outputs_focused&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_processing.test_get_outputs.MyTestCase.test_outputs_into_directory" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_processing.test_get_outputs.MyTestCase.test_outputs_into_directory&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_processing.test_get_outputs.MyTestCase.test_r2_all" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_processing.test_get_outputs.MyTestCase.test_r2_all&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in bin" type="tests" factoryName="Unittests">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/../../MRes/Flow_Country_HSI_and_PSM/python_notebooks/hyperspectral_machine_learning/venv/Scripts/python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_pattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python tests.Unittests in bin" />
+      <item itemvalue="Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase" />
+      <item itemvalue="Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_output_dataframe_contains_group_time" />
+      <item itemvalue="Python tests.Python tests for test_processing.test_get_outputs.MyTestCase.test_outputs_focused" />
+      <item itemvalue="Python tests.Python tests for test_processing.test_get_outputs.MyTestCase.test_r2_all" />
+      <item itemvalue="Python tests.Python tests for test_processing.test_get_outputs.MyTestCase.test_outputs_into_directory" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for test_processing.test_get_outputs.MyTestCase.test_r2_all" />
+        <item itemvalue="Python tests.Python tests for test_processing.test_get_outputs.MyTestCase.test_outputs_into_directory" />
+        <item itemvalue="Python tests.Python tests for test_processing.test_get_outputs.MyTestCase.test_outputs_focused" />
+        <item itemvalue="Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase" />
+        <item itemvalue="Python tests.Python tests for test_processing.test_descriptive_stats.MyTestCase.test_output_dataframe_contains_group_time" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-PY-242.21829.153" />
+        <option value="bundled-python-sdk-464836ebc622-b74155a9e76b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.21829.153" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8ddf40eb-899d-4855-b10e-018b6a113b97" name="Changes" comment="" />
+      <created>1725270958287</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1725270958287</updated>
+      <workItem from="1725270964600" duration="6892000" />
+      <workItem from="1725286940856" duration="18846000" />
+      <workItem from="1725358072921" duration="22382000" />
+      <workItem from="1725462763658" duration="51133000" />
+      <workItem from="1725980683019" duration="26000" />
+      <workItem from="1725980796697" duration="57000" />
+      <workItem from="1726147064996" duration="25000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/test/test_processing/test_box_whisker_graphs.py</url>
+          <line>76</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/test/test_preprocessing/test_time_split.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/processing/get_outputs.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/test/test_processing/test_get_outputs.py</url>
+          <line>154</line>
+          <option name="timeStamp" value="162" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/processing/scatter_graphs.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="164" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/test/test_processing/test_get_outputs.py</url>
+          <line>80</line>
+          <option name="timeStamp" value="165" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="tests">
+        <watch expression="split_dictionary" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/pythonProject$.coverage" NAME=" Coverage Results" MODIFIED="1726134840584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
+  </component>
+</project>

@@ -1,50 +1,84 @@
 import pandas as pd
 
 class DescriptiveStats:
-    def __init__(self, dataframe, list_of_variables, output_directory=None):
-        self.dataframe = dataframe
+    def __init__(self, dataframes, list_of_variables, time_group=None, output_directory=None):
+        self.dataframes = dataframes
         self.list_of_variables = list_of_variables
-        self.device_id = dataframe['device_id'].iloc[0]
         self.output_directory = output_directory
+        self.time_group = time_group
 
     def get_stats(self):
         output_dictionary = {}
-        for variable in self.list_of_variables:
-            variable_mean = self.get_mean(variable)
-            variable_max = self.get_max(variable)
-            variable_min = self.get_min(variable)
-            variable_range = variable_max - variable_min
-            variable_std = self.get_std(variable)
-            variable_iqr = self.get_iqr(variable)
-            output_dictionary[variable] = {'device_id': self.device_id, 'mean': variable_mean, 'max': variable_max, 'min': variable_min,
-                                   'range': variable_range, 'std': variable_std, 'iqr': variable_iqr}
-        output_dataframe = pd.DataFrame.from_dict(output_dictionary, orient='index')
-        output_dataframe.reset_index(inplace=True)
-        output_dataframe.rename(columns={'index': 'variable'}, inplace=True)
+
+        for dataframe in self.dataframes:
+            if self.time_group is None:
+                dataframe['group'] = 0
+                groups = [0]
+                timing = 'group'
+            else:
+                groups = dataframe[self.time_group].unique().tolist()
+                timing = self.time_group
+
+            device_id = dataframe['device_id'].iloc[0]
+            for variable in self.list_of_variables:
+                variable_mean = self._get_stat(dataframe, timing, variable, 'mean')
+                variable_max = self._get_stat(dataframe, timing, variable, 'max')
+                variable_min = self._get_stat(dataframe, timing, variable, 'min')
+                variable_range = self._get_range(variable_max, variable_min)
+                variable_std = self._get_stat(dataframe, timing, variable, 'std')
+                variable_iqr = self._get_stat(dataframe, timing, variable, 'iqr')
+                for group in range(len(groups)):
+                    if self.time_group in dataframe.columns:
+                        group_time = groups[group]
+                    else:
+                        group_time = '0:00-24:00'
+                    output_dictionary[f'{variable}_{group}_{device_id}'] = {'device_id': device_id, 'variable': variable,
+                                                                            'group': group, f'{timing}': group_time, 'mean': variable_mean[group],
+                                                                'max': variable_max[group], 'min': variable_min[group],
+                                                                'range': variable_range[group], 'std': variable_std[group],
+                                                                'iqr': variable_iqr[group]}
+
+        output_dataframe = self._dictionary_to_dataframe(output_dictionary)
+
+        if len(self.dataframes) == 1:
+            device_id = self.dataframes[0]['device_id'].iloc[0]
+        else:
+            device_id = 'multiple_locations'
+
 
         if self.output_directory is not None:
-            updated_device_id = self.device_id.replace(" | ", "_")
-            output_name = f'descriptive_stats_{updated_device_id}.csv'
-            output_path = f'{self.output_directory}/{output_name}'
-            output_dataframe.to_csv(output_path, index=False)
+            self._save_csv(device_id, output_dataframe, timing)
 
         return output_dataframe
 
+    def _dictionary_to_dataframe(self, output_dictionary):
+        output_dataframe = pd.DataFrame.from_dict(output_dictionary, orient='index')
+        output_dataframe.reset_index(inplace=True)
+        output_dataframe.rename(columns={'index': 'variable_group_device_id'}, inplace=True)
+        return output_dataframe
 
-    def get_mean(self, variable):
-        return self.dataframe[variable].mean()
+    def _save_csv(self, device_id, output_dataframe, timing):
+        updated_device_id = device_id.replace(" | ", "_")
+        output_name = f'descriptive_stats_{updated_device_id}_groups_{timing}.csv'
+        output_path = f'{self.output_directory}/{output_name}'
+        output_dataframe.to_csv(output_path, index=False)
 
-    def get_max(self, variable):
-        return self.dataframe[variable].max()
+    def _get_stat(self, dataframe, group, variable, stat):
+        if stat != 'iqr':
+            dataframe_stat =  dataframe.groupby(group).agg({variable: stat}).reset_index()
+        else:
+            dataframe_stat = dataframe.groupby(group).agg({variable: self._iqr}).reset_index()
+        return self._extract_relevant_outcomes_from_dataframe(dataframe_stat, variable)
 
-    def get_min(self, variable):
-        return self.dataframe[variable].min()
+    def _iqr(self, series):
+        return series.quantile(0.75) - series.quantile(0.25)
 
-    def get_std(self, variable):
-        return self.dataframe[variable].std()
+    def _get_range(self, maximum, minimum):
+        ranges = []
+        for maximum, minimum in zip(maximum, minimum):
+            ranges.append(maximum - minimum)
+        return ranges
 
-    def get_iqr(self, variable):
-        return self.dataframe[variable].quantile(0.75) - self.dataframe[variable].quantile(0.25)
-
-
+    def _extract_relevant_outcomes_from_dataframe(self, dataframe, variable):
+        return dataframe[variable].to_list()
 

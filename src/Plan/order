@@ -1,0 +1,12 @@
+1. preprocessing
+a) cleaning (anomaly removal...)
+b) split by time
+
+2. processing
+a) descriptive stats (no time split)
+b) scatter graphs (compare variables)
+c) descriptive stats (with time split)
+d) dispersion graphs (different pollutants on x, different locations on x with the same pollutant - all data by date and descriptive stats)
+d) line graphs (no time split)
+e) line graphs (with time split - start to end on x, line per time period)
+f) box and whisker plots - means by hour with sd
