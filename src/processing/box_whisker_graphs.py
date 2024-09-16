@@ -21,20 +21,23 @@ class BoxWhiskerGraph:
         # location only needs to be added if more than one location is included
 
     def box_whisker_graph(self):
-        if self.output_directory is None:
-            self._get_box_whisker_plot()
-            plt.show()
-        else:
-            self._get_box_whisker_plot()
-            if self.location is None:
-                if self.multiple is None:
-                    plt.savefig(f'{self.output_directory}/Box_Whisker_Plot_{self.x_column}_{self.variable}_at_{self.device_id.replace(" | ", "_")}.png')
-                else:
-                    plt.savefig(f'{self.output_directory}/Box_Whisker_Plot_{self.x_column}_{self.variable}_at_{self.device_id.replace(" | ", "_")}_range_pollutants.png')
+        if not self.dataframe[self.variable].isnull().all():
+            if self.output_directory is None:
+                self._get_box_whisker_plot()
+                plt.show()
             else:
-                plt.savefig(f'{self.output_directory}/Box_Whisker_Plot_{self.x_column}_{self.variable}_at_{self.location}.png')
+                self._get_box_whisker_plot()
+                if self.location is None:
+                    if self.multiple is None:
+                        plt.savefig(f'{self.output_directory}/Box_Whisker_Plot_{self.x_column}_{self.variable}_at_{self.device_id.replace(" | ", "_")}.png')
+                    else:
+                        plt.savefig(f'{self.output_directory}/Box_Whisker_Plot_{self.x_column}_{self.variable}_at_{self.device_id.replace(" | ", "_")}_range_pollutants.png')
+                else:
+                    plt.savefig(f'{self.output_directory}/Box_Whisker_Plot_{self.x_column}_{self.variable}_at_{self.location}.png')
 
-            plt.close()
+                plt.close()
+        else:
+            return f'The {self.variable} column contains no data.'
 
     def _get_box_whisker_plot(self):
         sns.set_theme(style="ticks", palette="pastel")
