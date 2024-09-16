@@ -2,10 +2,8 @@ import unittest
 import os
 import pandas as pd
 
-from processing.box_whisker_graphs import BoxWhiskerGraph, MeltDataframe
 from processing.descriptive_stats import DescriptiveStats
-from processing.dispersion_graphs import DispersionGraph
-from processing.time_split import TimeSplit
+from preprocessing.time_split import TimeSplit
 from processing.heatmap import Heatmap
 
 

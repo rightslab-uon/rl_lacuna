@@ -1,10 +1,9 @@
 import os
 import unittest
-from sqlite3 import Timestamp
 
 import pandas as pd
 
-from processing.clean_data import CleanData
+from preprocessing.clean_data import CleanData
 
 CURRENT_PATH = os.getcwd()
 four_levels_up = os.path.abspath(os.path.join(CURRENT_PATH, '..', '..', '..', '..'))

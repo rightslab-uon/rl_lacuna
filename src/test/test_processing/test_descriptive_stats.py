@@ -3,7 +3,7 @@ import os
 import pandas as pd
 
 from processing.descriptive_stats import DescriptiveStats
-from processing.time_split import DayNightSplit, TimeSplit
+from preprocessing.time_split import DayNightSplit, TimeSplit
 
 CURRENT_PATH = os.getcwd()
 four_levels_up = os.path.abspath(os.path.join(CURRENT_PATH, '..', '..', '..', '..'))

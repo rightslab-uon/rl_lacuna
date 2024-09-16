@@ -2,7 +2,7 @@ import unittest
 import os
 import pandas as pd
 
-from processing.clean_data import CleanData
+from preprocessing.clean_data import CleanData
 from processing.scatter_graphs import ScatterGraph
 
 CURRENT_PATH = os.getcwd()

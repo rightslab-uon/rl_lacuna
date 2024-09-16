@@ -2,7 +2,7 @@ import unittest
 import os
 import pandas as pd
 
-from processing.time_split import TimeSplit, DayNightSplit
+from preprocessing.time_split import TimeSplit, DayNightSplit
 
 CURRENT_PATH = os.getcwd()
 four_levels_up = os.path.abspath(os.path.join(CURRENT_PATH, '..', '..', '..', '..'))

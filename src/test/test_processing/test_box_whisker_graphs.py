@@ -3,8 +3,8 @@ import os
 import pandas as pd
 
 from processing.box_whisker_graphs import BoxWhiskerGraph, MeltDataframe
-from processing.clean_data import CleanData
-from processing.time_split import TimeSplit
+from preprocessing.clean_data import CleanData
+from preprocessing.time_split import TimeSplit
 
 
 CURRENT_PATH = os.getcwd()

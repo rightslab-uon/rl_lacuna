@@ -5,7 +5,7 @@ from pandas import DataFrame
 
 from processing.descriptive_stats import DescriptiveStats
 from processing.dispersion_graphs import DispersionGraph
-from processing.time_split import TimeSplit
+from preprocessing.time_split import TimeSplit
 
 CURRENT_PATH = os.getcwd()
 four_levels_up = os.path.abspath(os.path.join(CURRENT_PATH, '..', '..', '..', '..'))
