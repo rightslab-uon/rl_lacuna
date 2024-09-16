@@ -1,7 +1,8 @@
 from matplotlib import pyplot as plt
 import seaborn as sns
 
-from processing.Formatting import format_string, get_units, get_pollutant_name
+from processing.Formatting import format_string, get_units, get_pollutant_name, get_who_air_quality_guideline
+
 
 class BoxWhiskerGraph:
     def __init__(self, dataframe, variable, x_column, multiple=None, locations=None, output_directory=None):
@@ -58,9 +59,20 @@ class BoxWhiskerGraph:
         plt.xlabel(format_string(x_column_name))
         plt.ylabel(f'{self.pollutant_name} {self.units}')
         plt.xticks(rotation=45)
+        self._add_lines_pollutant_levels()
+
         if self.multiple is not None:
             plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         plt.tight_layout()
+
+    def _add_lines_pollutant_levels(self):
+        limits_list = ['pm_25', 'pm_10', 'no2', 'co']
+        colours = ['red', 'darkred', 'firebrick', 'lightcoral']
+        for limit, colour in zip(limits_list, colours):
+            if limit in self.variable:
+                y_line = get_who_air_quality_guideline(limit)
+                name = get_pollutant_name(limit)
+                plt.axhline(y=y_line, color=colour, linestyle='--', label=f'{name} limit')
 
 class MeltDataframe:
     def __init__(self, dataframe, variables_name, values_name, column_for_x_axis=None, list_of_columns_for_multiple_variables=None, location_more_than_one=False, dataframe_containing_device_id=None):

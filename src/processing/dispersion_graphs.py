@@ -1,6 +1,6 @@
 from matplotlib import pyplot as plt
 
-from processing.Formatting import get_units, get_pollutant_name
+from processing.Formatting import get_units, get_pollutant_name, get_who_air_quality_guideline
 
 
 class DispersionGraph:
@@ -38,6 +38,7 @@ class DispersionGraph:
                 if variable_units == '':
                     plt.ylabel(f'Pollutant {variable_name}')
                 plt.ylabel(f'{variable_name} ({variable_units})')
+                self._add_lines_pollutant_levels()
                 plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
                 return variable_name
 
@@ -54,6 +55,7 @@ class DispersionGraph:
                     if variable_units == '':
                         plt.ylabel(f'Pollutant {variable_name}')
                     plt.ylabel(f'{variable} {variable_name} ({variable_units})')
+                    self._add_lines_pollutant_levels()
                     plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
                     plt.xticks(rotation=45)
                     plt.tight_layout()
@@ -69,6 +71,7 @@ class DispersionGraph:
                 if variable_units == '':
                     plt.ylabel(f'Pollutant {variable_name}')
                 plt.ylabel(f'{variable} {variable_name} ({variable_units})')
+                self._add_lines_pollutant_levels()
                 plt.legend(title='Location', loc='center left', bbox_to_anchor=(1, 0.5))
                 plt.tight_layout()
 
@@ -76,6 +79,15 @@ class DispersionGraph:
         plt.xticks(rotation=45)
         plt.tight_layout()
         return variable_name
+
+    def _add_lines_pollutant_levels(self):
+        limits_list = ['pm_25', 'pm_10', 'no2', 'co']
+        colours = ['red', 'darkred', 'firebrick', 'lightcoral']
+        for limit, colour in zip(limits_list, colours):
+            if any(limit in s for s in self.variables):
+                y_line = get_who_air_quality_guideline(limit)
+                name = get_pollutant_name(limit)
+                plt.axhline(y=y_line, color=colour, linestyle='--', label=f'{name} limit')
 
 
 

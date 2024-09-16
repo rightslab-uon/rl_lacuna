@@ -48,13 +48,7 @@ class LineGraphs:
         plt.xlabel('Time')
         plt.ylabel(' '.join(y_label_list))
 
-        limits_list = ['pm_25', 'pm_10', 'no2']
-        colours = ['red', 'darkred', 'firebrick']
-        for limit,colour in zip(limits_list, colours):
-            if any(limit in s for s in self.variables):
-                y_line = get_who_air_quality_guideline(limit)
-                name = get_pollutant_name(limit)
-                plt.axhline(y=y_line, color=colour, linestyle='--', label=f'{name} limit')
+        self._add_lines_pollutant_levels()
 
         # Adding legend
         if len(self.variables) > 1:
@@ -68,3 +62,12 @@ class LineGraphs:
             short_labels = [label[:10] for label in self.dataframe[self.x_column][::step]]
             plt.xticks(self.dataframe[self.x_column][::step], short_labels, rotation=45)
         plt.tight_layout()
+
+    def _add_lines_pollutant_levels(self):
+        limits_list = ['pm_25', 'pm_10', 'no2', 'co']
+        colours = ['red', 'darkred', 'firebrick', 'lightcoral']
+        for limit, colour in zip(limits_list, colours):
+            if any(limit in s for s in self.variables):
+                y_line = get_who_air_quality_guideline(limit)
+                name = get_pollutant_name(limit)
+                plt.axhline(y=y_line, color=colour, linestyle='--', label=f'{name} limit')
