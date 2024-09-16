@@ -4,7 +4,7 @@ def format_string(string):
     return string
 
 
-def get_units(pollutant):
+def get_units(pollutant: str):
     if pollutant == 'pm_25' or pollutant == 'pm_10' or pollutant == 'no2':
         return 'μm/m³'
     elif pollutant == 'co':
@@ -16,7 +16,7 @@ def get_units(pollutant):
     else:
         return ''
 
-def get_who_air_quality_guideline(pollutant):
+def get_who_air_quality_guideline(pollutant: str):
     if pollutant == 'pm_25':
         return 15
     elif pollutant == 'pm_10':
@@ -30,7 +30,7 @@ def get_who_air_quality_guideline(pollutant):
 
 
 
-def get_pollutant_name(pollutant):
+def get_pollutant_name(pollutant: str):
     if pollutant == 'pm_25':
         return 'pm 2.5'
     elif pollutant == 'pm_10':
@@ -47,7 +47,7 @@ def get_pollutant_name(pollutant):
         return capitalise_first_letter(pollutant)
 
 
-def capitalise_first_letter(string_to_capitalise_start):
+def capitalise_first_letter(string_to_capitalise_start: str):
     if string_to_capitalise_start and not string_to_capitalise_start[0].isupper():
         return string_to_capitalise_start[0].upper() + string_to_capitalise_start[1:]
     return string_to_capitalise_start

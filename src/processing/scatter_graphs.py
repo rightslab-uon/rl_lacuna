@@ -8,7 +8,7 @@ from processing.Formatting import get_units, get_pollutant_name
 
 
 class ScatterGraph:
-    def __init__(self, dataframe, variables, output_directory=None, combined=False):
+    def __init__(self, dataframe: pd.DataFrame, variables: list, output_directory=None, combined=False):
         self.dataframe = dataframe
         self.variables = variables
         if combined is False:

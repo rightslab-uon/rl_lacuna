@@ -2,7 +2,7 @@ import pandas as pd
 import re
 
 class DayNightSplit:
-    def __init__(self, dataframe, column_containing_dates, start_of_day, end_of_day):
+    def __init__(self, dataframe: pd.DataFrame, column_containing_dates: str, start_of_day: int, end_of_day: int):
         self.dataframe = dataframe
         self.column_containing_dates = column_containing_dates
         self.start_of_day = start_of_day
@@ -24,7 +24,7 @@ class DayNightSplit:
         return split_dictionary
 
 class TimeSplit:
-    def __init__(self, dataframe, column_containing_dates, number_of_groups_per_day=24):
+    def __init__(self, dataframe: pd.DataFrame, column_containing_dates: str, number_of_groups_per_day=24):
         self.dataframe = dataframe
         self.column_containing_dates = column_containing_dates
         self.number_of_splits_in_day = number_of_groups_per_day

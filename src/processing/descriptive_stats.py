@@ -1,7 +1,7 @@
 import pandas as pd
 
 class DescriptiveStats:
-    def __init__(self, dataframes, list_of_variables, time_group=None, output_directory=None):
+    def __init__(self, dataframes: pd.DataFrame, list_of_variables: list, time_group=None, output_directory=None):
         self.dataframes = dataframes
         self.list_of_variables = list_of_variables
         self.output_directory = output_directory

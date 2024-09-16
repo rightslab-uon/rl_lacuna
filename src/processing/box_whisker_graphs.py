@@ -1,3 +1,4 @@
+import pandas as pd
 from matplotlib import pyplot as plt
 import seaborn as sns
 
@@ -5,7 +6,7 @@ from processing.Formatting import format_string, get_units, get_pollutant_name, 
 
 
 class BoxWhiskerGraph:
-    def __init__(self, dataframe, variable, x_column, multiple=None, locations=None, output_directory=None):
+    def __init__(self, dataframe: pd.DataFrame, variable: str, x_column: str, multiple=None, locations=None, output_directory=None):
         self.dataframe = dataframe.sort_values(x_column)
         self.variable = variable
         if locations is None:
@@ -18,7 +19,7 @@ class BoxWhiskerGraph:
         self.output_directory = output_directory  # only needs to be completed if the graph is to be saved
         self.units = get_units(variable)
         self.pollutant_name = get_pollutant_name(variable)
-        # multiple could be multiple locations or variables. See MeltDataframe class - will the the same as 'variables_name'
+        # multiple could be multiple locations or variables. See MeltDataframe class - will be the same as 'variables_name'
         # location only needs to be added if more than one location is included
 
     def box_whisker_graph(self):

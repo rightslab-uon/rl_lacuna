@@ -6,7 +6,7 @@ from processing.Formatting import get_units, get_pollutant_name
 
 
 class Heatmap:
-    def __init__(self, descriptive_dataframe, stats_variable, x_column, y_column, locations, output_directory=None):
+    def __init__(self, descriptive_dataframe: pd.DataFrame, stats_variable: str, x_column: str, y_column: str, locations: str, output_directory=None):
         self.dataframe = descriptive_dataframe.sort_values(y_column)
         self.variable = stats_variable
         self.x_column = x_column

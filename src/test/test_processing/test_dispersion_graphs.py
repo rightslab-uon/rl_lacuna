@@ -1,6 +1,7 @@
 import unittest
 import os
 import pandas as pd
+from pandas import DataFrame
 
 from processing.descriptive_stats import DescriptiveStats
 from processing.dispersion_graphs import DispersionGraph
@@ -35,7 +36,7 @@ df2_prefixed = df2_prefixed.rename(columns={'062_data_created_time': 'data_creat
 
 prefixed_dataframes = [df1_prefixed, df2_prefixed]
 
-merged_dataframe = prefixed_dataframes[0]
+merged_dataframe: DataFrame = prefixed_dataframes[0]
 # Iterate and merge
 for frame in prefixed_dataframes[1:]:
     merged_dataframe = merged_dataframe.merge(frame, on='data_created_time', how='outer')

@@ -1,10 +1,11 @@
 from matplotlib import pyplot as plt
+from pandas.core.interchange.dataframe_protocol import DataFrame
 
 from processing.Formatting import get_units, get_pollutant_name, get_who_air_quality_guideline
 
 
 class DispersionGraph:
-    def __init__(self, dataframe, variables, x_column, locations_stat_variable=None, output_directory=None):
+    def __init__(self, dataframe: DataFrame, variables, x_column, locations_stat_variable=None, output_directory=None):
         self.dataframe = dataframe.sort_values(x_column)
         self.variables = variables
         if locations_stat_variable is None:

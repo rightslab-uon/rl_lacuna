@@ -1,11 +1,12 @@
 import pandas as pd
+from jedi.inference.compiled.subprocess import Listener
 from matplotlib import pyplot as plt
 
 from processing.Formatting import get_units, get_pollutant_name, get_who_air_quality_guideline
 
 
 class LineGraphs:
-    def __init__(self, dataframe, variables, x_column, locations=None, output_directory=None):
+    def __init__(self, dataframe: pd.DataFrame, variables: list, x_column: str, locations=None, output_directory=None):
         self.dataframe = dataframe.sort_values(x_column)
         self.variables = variables
         if locations is None:

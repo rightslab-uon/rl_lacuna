@@ -3,7 +3,7 @@ import pandas as pd
 
 
 class CleanData:
-    def __init__(self, dataframe):
+    def __init__(self, dataframe: pd.DataFrame):
         self.dataframe = dataframe
 
     def remove_anomalies(self):
@@ -12,7 +12,7 @@ class CleanData:
             upper_bound = self.dataframe[col].quantile(0.999)
             return self.dataframe[(self.dataframe[col] >= lower_bound) & (self.dataframe[col] <= upper_bound)]
 
-    def find_missing_intervals(self, column_containing_dates_times, minutes_missing):
+    def find_missing_intervals(self, column_containing_dates_times: str, minutes_missing: int):
         # Ensure the datetime column is in datetime format
         self.dataframe[column_containing_dates_times] = pd.to_datetime(self.dataframe[column_containing_dates_times])
 
