@@ -45,7 +45,8 @@ class TimeSplit:
         data.loc[:, 'group_time'] = data['group_time'].str.replace(r'(\b\d\b)', r'0\1', regex=True)
         return data
 
-    def _change_24_to_00(self, dataframe):
+    @staticmethod
+    def _change_24_to_00(dataframe):
         data = dataframe.copy()
         data.loc[data['group_time'].str.contains('24'), 'group_time'] = data['group_time'].str.replace('24', '00')
         return data
@@ -61,7 +62,8 @@ class TimeSplit:
             split_start = split_start + number_of_hours_per_split
         return split_dictionary
 
-    def _add_colon_zeroes(self, range_str):
+    @staticmethod
+    def _add_colon_zeroes(range_str):
         return re.sub(r'(\d+)', r'\1:00', range_str)
 
     def get_hour_column(self):
@@ -75,7 +77,8 @@ class TimeSplit:
 
 
 class GroupFinder:
-    def find_group(self, split_dictionary, hour):
+    @staticmethod
+    def find_group(split_dictionary, hour):
         for key, range_dict in split_dictionary.items():
             if range_dict['start'] <= hour < range_dict['end']:
                 return key

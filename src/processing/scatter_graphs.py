@@ -58,7 +58,8 @@ class ScatterGraph:
             plt.show()
 
 
-    def get_r2(self, x_r2, y_r2):
+    @staticmethod
+    def get_r2(x_r2, y_r2):
         model = LinearRegression()
         model.fit(x_r2, y_r2)
         # Predict the response variable
@@ -77,7 +78,7 @@ class ScatterGraph:
         y_variable_name = get_pollutant_name(y)
         y_variable_units = get_units(y)
 
-        plot_title = (f'Scatter Plot for {x_variable_name} and {y_variable_name} at {self.device_id.replace(" | ", " ")}')
+        plot_title = f'Scatter Plot for {x_variable_name} and {y_variable_name} at {self.device_id.replace(" | ", " ")}'
         plt.title(plot_title)
         plt.xlabel(f'{x_variable_name} ({x_variable_units})')
         plt.ylabel(f'{y_variable_name} ({y_variable_units})')

@@ -15,7 +15,7 @@ class Heatmap:
         self.unit = get_units(self.variable)
         self.variable_name = get_pollutant_name(self.variable)
         self.output_directory = output_directory  # only needs to be completed if the graph is to be saved
-        # multiple could be multiple locations or variables. See MeltDataframe class - will the the same as 'variables_name'
+        # multiple could be multiple locations or variables. See MeltDataframe class - will the be same as 'variables_name'
         # location only needs to be added if more than one location is included
 
 

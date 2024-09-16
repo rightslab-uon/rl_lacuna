@@ -1,7 +1,7 @@
 import pandas as pd
 
 class DescriptiveStats:
-    def __init__(self, dataframes: pd.DataFrame, list_of_variables: list, time_group=None, output_directory=None):
+    def __init__(self, dataframes: list, list_of_variables: list, time_group=None, output_directory=None):
         self.dataframes = dataframes
         self.list_of_variables = list_of_variables
         self.output_directory = output_directory
@@ -9,15 +9,17 @@ class DescriptiveStats:
 
     def get_stats(self):
         output_dictionary = {}
+        timing = 'group'
 
         for dataframe in self.dataframes:
             if self.time_group is None:
                 dataframe['group'] = 0
                 groups = [0]
-                timing = 'group'
+
             else:
                 groups = dataframe[self.time_group].unique().tolist()
                 timing = self.time_group
+
 
             device_id = dataframe['device_id'].iloc[0]
             for variable in self.list_of_variables:
@@ -28,10 +30,7 @@ class DescriptiveStats:
                 variable_std = self._get_stat(dataframe, timing, variable, 'std')
                 variable_iqr = self._get_stat(dataframe, timing, variable, 'iqr')
                 for group in range(len(groups)):
-                    if self.time_group in dataframe.columns:
-                        group_time = groups[group]
-                    else:
-                        group_time = '0:00-24:00'
+                    group_time = self._get_group_time(dataframe, group, groups)
                     output_dictionary[f'{variable}_{group}_{device_id}'] = {'device_id': device_id, 'variable': variable,
                                                                             'group': group, f'{timing}': group_time, 'mean': variable_mean[group],
                                                                 'max': variable_max[group], 'min': variable_min[group],
@@ -45,13 +44,20 @@ class DescriptiveStats:
         else:
             device_id = 'multiple_locations'
 
-
         if self.output_directory is not None:
             self._save_csv(device_id, output_dataframe, timing)
 
         return output_dataframe
 
-    def _dictionary_to_dataframe(self, output_dictionary):
+    def _get_group_time(self, dataframe, group, groups):
+        if self.time_group in dataframe.columns:
+            group_time = groups[group]
+        else:
+            group_time = '0:00-24:00'
+        return group_time
+
+    @staticmethod
+    def _dictionary_to_dataframe(output_dictionary):
         output_dataframe = pd.DataFrame.from_dict(output_dictionary, orient='index')
         output_dataframe.reset_index(inplace=True)
         output_dataframe.rename(columns={'index': 'variable_group_device_id'}, inplace=True)
@@ -70,15 +76,18 @@ class DescriptiveStats:
             dataframe_stat = dataframe.groupby(group).agg({variable: self._iqr}).reset_index()
         return self._extract_relevant_outcomes_from_dataframe(dataframe_stat, variable)
 
-    def _iqr(self, series):
+    @staticmethod
+    def _iqr(series):
         return series.quantile(0.75) - series.quantile(0.25)
 
-    def _get_range(self, maximum, minimum):
+    @staticmethod
+    def _get_range(maximum, minimum):
         ranges = []
         for maximum, minimum in zip(maximum, minimum):
             ranges.append(maximum - minimum)
         return ranges
 
-    def _extract_relevant_outcomes_from_dataframe(self, dataframe, variable):
+    @staticmethod
+    def _extract_relevant_outcomes_from_dataframe(dataframe, variable):
         return dataframe[variable].to_list()
 

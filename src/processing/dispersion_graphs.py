@@ -1,11 +1,11 @@
 from matplotlib import pyplot as plt
-from pandas.core.interchange.dataframe_protocol import DataFrame
+import pandas as pd
 
 from processing.Formatting import get_units, get_pollutant_name, get_who_air_quality_guideline
 
 
 class DispersionGraph:
-    def __init__(self, dataframe: DataFrame, variables, x_column, locations_stat_variable=None, output_directory=None):
+    def __init__(self, dataframe: pd.DataFrame, variables, x_column, locations_stat_variable=None, output_directory=None):
         self.dataframe = dataframe.sort_values(x_column)
         self.variables = variables
         if locations_stat_variable is None:
@@ -33,52 +33,57 @@ class DispersionGraph:
     def _get_dispersion_plot(self):
         if self.locations is None:
             for column in self.variables:
-                plt.scatter(self.dataframe[self.x_column].values, self.dataframe[column].values, s=10, marker='.', label=column)
-                variable_name = get_pollutant_name(column)
-                variable_units = get_units(column)
-                if variable_units == '':
-                    plt.ylabel(f'Pollutant {variable_name}')
-                plt.ylabel(f'{variable_name} ({variable_units})')
-                self._add_lines_pollutant_levels()
-                plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-                return variable_name
+                variable_name = self._plot_multiple_variables_one_location(column)
 
         else:
             if len(self.variables) > 1:
                 for column in self.variables:
-                    variable = self.variables[0]
-                    pollutant = variable[4:]
-                    variable_name = get_pollutant_name(pollutant)
-                    variable_units = get_units(pollutant)
-                    label = column[0:3]
-                    plt.scatter(self.dataframe[self.x_column].values, self.dataframe[column].values, s=10, marker='.',
-                                label=label)
-                    if variable_units == '':
-                        plt.ylabel(f'Pollutant {variable_name}')
-                    plt.ylabel(f'{variable} {variable_name} ({variable_units})')
-                    self._add_lines_pollutant_levels()
-                    plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-                    plt.xticks(rotation=45)
-                    plt.tight_layout()
+                    variable_name = self._plot_multiple_variables_multiple_locations(column)
 
             else:
                 variable = self.variables[0]
                 pollutant = self.locations.split(f'{variable}_', 1)[1]
                 variable_name = get_pollutant_name(pollutant)
                 variable_units = get_units(pollutant)
-                _, ax = plt.subplots()
-                for key, grp in self.dataframe.groupby(['device_id']):
-                    ax.scatter(grp[self.x_column], grp[variable] * len(grp), label=key)
-                if variable_units == '':
-                    plt.ylabel(f'Pollutant {variable_name}')
-                plt.ylabel(f'{variable} {variable_name} ({variable_units})')
-                self._add_lines_pollutant_levels()
-                plt.legend(title='Location', loc='center left', bbox_to_anchor=(1, 0.5))
-                plt.tight_layout()
+                self._plot_multiple_locations_one_variable(variable, variable_name, variable_units)
 
+        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         plt.xlabel('Time')
         plt.xticks(rotation=45)
         plt.tight_layout()
+        return variable_name
+
+    def _plot_multiple_locations_one_variable(self, variable, variable_name, variable_units):
+        _, ax = plt.subplots()
+        for key, grp in self.dataframe.groupby(['device_id']):
+            ax.scatter(grp[self.x_column], grp[variable] * len(grp), label=key)
+        if variable_units == '':
+            plt.ylabel(f'Pollutant {variable_name}')
+        plt.ylabel(f'{variable} {variable_name} ({variable_units})')
+        self._add_lines_pollutant_levels()
+
+    def _plot_multiple_variables_multiple_locations(self, column):
+        variable = self.variables[0]
+        pollutant = variable[4:]
+        variable_name = get_pollutant_name(pollutant)
+        variable_units = get_units(pollutant)
+        label = column[0:3]
+        plt.scatter(self.dataframe[self.x_column].values, self.dataframe[column].values, s=10, marker='.',
+                    label=label)
+        if variable_units == '':
+            plt.ylabel(f'Pollutant {variable_name}')
+        plt.ylabel(f'{variable} {variable_name} ({variable_units})')
+        self._add_lines_pollutant_levels()
+        return variable_name
+
+    def _plot_multiple_variables_one_location(self, column):
+        plt.scatter(self.dataframe[self.x_column].values, self.dataframe[column].values, s=10, marker='.', label=column)
+        variable_name = get_pollutant_name(column)
+        variable_units = get_units(column)
+        if variable_units == '':
+            plt.ylabel(f'Pollutant {variable_name}')
+        plt.ylabel(f'{variable_name} ({variable_units})')
+        self._add_lines_pollutant_levels()
         return variable_name
 
     def _add_lines_pollutant_levels(self):

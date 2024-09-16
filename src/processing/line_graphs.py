@@ -1,5 +1,4 @@
 import pandas as pd
-from jedi.inference.compiled.subprocess import Listener
 from matplotlib import pyplot as plt
 
 from processing.Formatting import get_units, get_pollutant_name, get_who_air_quality_guideline

@@ -27,7 +27,7 @@ column_containing_dates = 'data_created_time'
 
 class MyTestCase(unittest.TestCase):
     def test_dataframe(self):
-        self.assertTrue(isinstance(dataframe, pd.DataFrame))
+        self.assertIsInstance(dataframe, pd.DataFrame)
 
     def test_variable_in_dataframe(self):
         column_names = dataframe.columns
@@ -74,15 +74,15 @@ class MyTestCase(unittest.TestCase):
 
     def test_descriptive_stats_multiple_locations_multiple_variables_multiple_groups(self):
         updated_dataframes = []
-        for dataframe in dataframes:
-            updated_dataframes.append(TimeSplit(dataframe, column_containing_dates, 8).split_dataframe())
+        for frame in dataframes:
+            updated_dataframes.append(TimeSplit(frame, column_containing_dates, 8).split_dataframe())
         dataframe_of_descriptive_stats = DescriptiveStats(updated_dataframes, ['pm_25', 'pm_10'],
                                                           output_directory=OUTPUT_PATH, time_group='group_time').get_stats()
         self.assertEqual(len(dataframe_of_descriptive_stats['mean']), 48)
 
     def test_output_dataframe_contains_group_time(self):
         dataframe_of_descriptive_stats = DescriptiveStats([dataframe], ['pm_25']).get_stats()
-        self.assertEqual(True, 'group' in dataframe_of_descriptive_stats.columns)
+        self.assertIn('group', dataframe_of_descriptive_stats.columns)
 
 if __name__ == '__main__':
     unittest.main()
