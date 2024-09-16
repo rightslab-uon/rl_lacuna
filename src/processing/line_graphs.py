@@ -1,7 +1,7 @@
 import pandas as pd
 from matplotlib import pyplot as plt
 
-from processing.Formatting import get_units, get_pollutant_name
+from processing.Formatting import get_units, get_pollutant_name, get_who_air_quality_guideline
 
 
 class LineGraphs:
@@ -47,6 +47,15 @@ class LineGraphs:
         plt.title('Temporal Changes in Pollution')
         plt.xlabel('Time')
         plt.ylabel(' '.join(y_label_list))
+
+        limits_list = ['pm_25', 'pm_10', 'no2']
+        colours = ['red', 'darkred', 'firebrick']
+        for limit,colour in zip(limits_list, colours):
+            if any(limit in s for s in self.variables):
+                y_line = get_who_air_quality_guideline(limit)
+                name = get_pollutant_name(limit)
+                plt.axhline(y=y_line, color=colour, linestyle='--', label=f'{name} limit')
+
         # Adding legend
         if len(self.variables) > 1:
             plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
