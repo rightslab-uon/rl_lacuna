@@ -55,9 +55,8 @@ class LineGraphs:
             plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         if pd.api.types.is_datetime64_any_dtype(self.dataframe[self.x_column]):
-            self.dataframe[self.x_column] = self.dataframe[self.x_column].astype('string')
+            self.dataframe[self.x_column] = self.dataframe[self.x_column].dt.strftime('%Y-%m-%d')
             plt.xticks(self.dataframe[self.x_column][::step], rotation=45)
-
         else:
             short_labels = [label[:10] for label in self.dataframe[self.x_column][::step]]
             plt.xticks(self.dataframe[self.x_column][::step], short_labels, rotation=45)
