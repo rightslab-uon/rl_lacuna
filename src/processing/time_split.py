@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+pd.options.mode.chained_assignment = None
 
 class DayNightSplit:
     def __init__(self, dataframe: pd.DataFrame, column_containing_dates: str, start_of_day: int, end_of_day: int):
