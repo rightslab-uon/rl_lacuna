@@ -13,8 +13,8 @@ class LineGraphs:
         else:
             self.device_id = None
         self.x_column = x_column
-        self.locations = locations # locations only needs to be completed if there is more than one location
-        self.output_directory = output_directory # only needs to be completed if the graph is to be saved
+        self.locations = locations  # locations only needs to be completed if there is more than one location
+        self.output_directory = output_directory  # only needs to be completed if the graph is to be saved
         self.variable_string = '_'.join(variables)
 
     def line_plot(self):
@@ -24,7 +24,8 @@ class LineGraphs:
         else:
             self.get_line_plot()
             if self.locations is None:
-                plt.savefig(f'{self.output_directory}/Line_Plot_{self.x_column}_{self.variable_string}_at_{self.device_id.replace(" | ", "_")}.png')
+                plt.savefig(
+                    f'{self.output_directory}/Line_Plot_{self.x_column}_{self.variable_string}_at_{self.device_id.replace(" | ", "_")}.png')
             else:
                 plt.savefig(f'{self.output_directory}/Line_Plot_{self.x_column}_at_{self.locations}.png')
 
@@ -38,7 +39,7 @@ class LineGraphs:
 
         for column in self.variables:
             variable_name = get_pollutant_name(column)
-            plt.plot(self.dataframe[self.x_column], self.dataframe[column], label= variable_name)
+            plt.plot(self.dataframe[self.x_column], self.dataframe[column], label=variable_name)
 
             y_label_list.append(f'{variable_name},')
         variable_units = get_units(self.variables[0])

@@ -22,14 +22,14 @@ class ScatterGraph:
         x = self.variables[0]
         updated_variables = self.variables[1:]
         _id = 0
-        for _ in range(len(self.variables)-1):
+        for _ in range(len(self.variables) - 1):
             for y in updated_variables:
                 dataframe_cleaned = self.dataframe.dropna(subset=[x, y])
                 if not dataframe_cleaned.empty:
                     x_r2 = dataframe_cleaned[[x]]
                     y_r2 = dataframe_cleaned[y]
                     r2 = self.get_r2(x_r2, y_r2)
-                    r2_dict[_id] = {'x': x, 'y':y, 'r2':r2}
+                    r2_dict[_id] = {'x': x, 'y': y, 'r2': r2}
                     _id += 1
                     self.save_plot(dataframe_cleaned, x, y, r2)
             x = updated_variables.pop(0)
@@ -47,7 +47,7 @@ class ScatterGraph:
             output_path = f'{self.output_directory}/{output_name}'
             output_dataframe.to_csv(output_path, index=False)
 
-    def save_plot(self, dataframe_cleaned, x, y,r2):
+    def save_plot(self, dataframe_cleaned, x, y, r2):
         if self.output_directory is not None:
             plot_title = self.get_scatter(dataframe_cleaned, x, y, r2)
             output_name = f'{self.output_directory}/{plot_title.replace(" ", "_")}.png'
@@ -56,7 +56,6 @@ class ScatterGraph:
         else:
             self.get_scatter(dataframe_cleaned, x, y, r2)
             plt.show()
-
 
     @staticmethod
     def get_r2(x_r2, y_r2):
@@ -69,9 +68,9 @@ class ScatterGraph:
 
     def get_scatter(self, dataframe_cleaned, x, y, r2):
         plt.scatter(dataframe_cleaned[x].values, dataframe_cleaned[y].values, color='royalblue', s=100, marker='.')
-        x_max = 0.9*max(dataframe_cleaned[x].values)
+        x_max = 0.9 * max(dataframe_cleaned[x].values)
         y_max = max(dataframe_cleaned[y].values)
-        plt.text(x_max, y_max, f'R2: {round(r2,4)}', ha='left', va='top', fontsize=10, color='darkblue')
+        plt.text(x_max, y_max, f'R2: {round(r2, 4)}', ha='left', va='top', fontsize=10, color='darkblue')
 
         x_variable_name = get_pollutant_name(x)
         x_variable_units = get_units(x)

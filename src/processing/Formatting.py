@@ -16,6 +16,7 @@ def get_units(pollutant: str):
     else:
         return ''
 
+
 def get_who_air_quality_guideline(pollutant: str):
     if pollutant == 'pm_25':
         return 15
@@ -27,7 +28,6 @@ def get_who_air_quality_guideline(pollutant: str):
         return 4
     else:
         return 0
-
 
 
 def get_pollutant_name(pollutant: str):

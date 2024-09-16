@@ -6,7 +6,8 @@ from processing.Formatting import format_string, get_units, get_pollutant_name, 
 
 
 class BoxWhiskerGraph:
-    def __init__(self, dataframe: pd.DataFrame, variable: str, x_column: str, multiple=None, locations=None, output_directory=None):
+    def __init__(self, dataframe: pd.DataFrame, variable: str, x_column: str, multiple=None, locations=None,
+                 output_directory=None):
         self.dataframe = dataframe.sort_values(x_column)
         self.variable = variable
         if locations is None:
@@ -31,11 +32,14 @@ class BoxWhiskerGraph:
                 self._get_box_whisker_plot()
                 if self.location is None:
                     if self.multiple is None:
-                        plt.savefig(f'{self.output_directory}/Box_Whisker_Plot_{self.x_column}_{self.variable}_at_{self.device_id.replace(" | ", "_")}.png')
+                        plt.savefig(
+                            f'{self.output_directory}/Box_Whisker_Plot_{self.x_column}_{self.variable}_at_{self.device_id.replace(" | ", "_")}.png')
                     else:
-                        plt.savefig(f'{self.output_directory}/Box_Whisker_Plot_{self.x_column}_{self.variable}_at_{self.device_id.replace(" | ", "_")}_range_pollutants.png')
+                        plt.savefig(
+                            f'{self.output_directory}/Box_Whisker_Plot_{self.x_column}_{self.variable}_at_{self.device_id.replace(" | ", "_")}_range_pollutants.png')
                 else:
-                    plt.savefig(f'{self.output_directory}/Box_Whisker_Plot_{self.x_column}_{self.variable}_at_{self.location}.png')
+                    plt.savefig(
+                        f'{self.output_directory}/Box_Whisker_Plot_{self.x_column}_{self.variable}_at_{self.location}.png')
 
                 plt.close()
         else:
@@ -75,8 +79,11 @@ class BoxWhiskerGraph:
                 name = get_pollutant_name(limit)
                 plt.axhline(y=y_line, color=colour, linestyle='--', label=f'{name} limit')
 
+
 class MeltDataframe:
-    def __init__(self, dataframe, variables_name, values_name, column_for_x_axis=None, list_of_columns_for_multiple_variables=None, location_more_than_one=False, dataframe_containing_device_id=None):
+    def __init__(self, dataframe, variables_name, values_name, column_for_x_axis=None,
+                 list_of_columns_for_multiple_variables=None, location_more_than_one=False,
+                 dataframe_containing_device_id=None):
         self.dataframe = dataframe
         self.column_for_x_axis = column_for_x_axis
         self.list_of_columns_for_multiple_variables = list_of_columns_for_multiple_variables
@@ -87,10 +94,10 @@ class MeltDataframe:
 
     def get_melted_dataframe(self):
         if self.column_for_x_axis is not None:
-            melted_dataframe =  self.dataframe.melt(id_vars=self.column_for_x_axis,
-                                   value_vars=self.list_of_columns_for_multiple_variables,
-                                   value_name=self.values_name,
-                                   var_name=self.variables_name)
+            melted_dataframe = self.dataframe.melt(id_vars=self.column_for_x_axis,
+                                                   value_vars=self.list_of_columns_for_multiple_variables,
+                                                   value_name=self.values_name,
+                                                   var_name=self.variables_name)
         else:
             melted_dataframe = self.dataframe.melt(value_name=self.values_name,
                                                    var_name=self.variables_name)
@@ -98,4 +105,3 @@ class MeltDataframe:
             device_id = self.dataframe_containing_device_id['device_id'].iloc[0]
             melted_dataframe['device_id'] = device_id
         return melted_dataframe
-

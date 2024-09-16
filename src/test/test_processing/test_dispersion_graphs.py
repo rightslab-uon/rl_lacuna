@@ -45,6 +45,7 @@ OUTPUT_PATH = f'{four_levels_up}/Coding/outputs'
 
 column_containing_dates = 'data_created_time'
 
+
 class MyTestCase(unittest.TestCase):
     def test_all_data_by_hour_dispersion_plot_one_variable(self):
         updated_dataframe = TimeSplit(dataframe, column_containing_dates, 8).split_dataframe()
@@ -58,12 +59,14 @@ class MyTestCase(unittest.TestCase):
 
     def test_means_data_by_hour_one_variable_multiple_sites(self):
         updated_dataframe = TimeSplit(merged_dataframe, column_containing_dates, 8).split_dataframe()
-        DispersionGraph(updated_dataframe, ['041_pm_25', '062_pm_25'], 'hour', locations_stat_variable='041_062', output_directory=OUTPUT_PATH).dispersion_graph()
+        DispersionGraph(updated_dataframe, ['041_pm_25', '062_pm_25'], 'hour', locations_stat_variable='041_062',
+                        output_directory=OUTPUT_PATH).dispersion_graph()
         self.assertTrue(os.path.exists(f'{OUTPUT_PATH}/Dispersion_Plot_hour_at_041_062.png'))
 
     def test_means_data_by_date_one_variable_multiple_sites(self):
         updated_dataframe = TimeSplit(merged_dataframe, column_containing_dates, 8).split_dataframe()
-        DispersionGraph(updated_dataframe, ['041_pm_25', '062_pm_25'], 'date', locations_stat_variable='041_062', output_directory=OUTPUT_PATH).dispersion_graph()
+        DispersionGraph(updated_dataframe, ['041_pm_25', '062_pm_25'], 'date', locations_stat_variable='041_062',
+                        output_directory=OUTPUT_PATH).dispersion_graph()
         self.assertTrue(os.path.exists(f'{OUTPUT_PATH}/Dispersion_Plot_date_at_041_062.png'))
 
     def test_means_data_multiple_locations_by_group(self):
@@ -73,7 +76,8 @@ class MyTestCase(unittest.TestCase):
         dataframe_of_descriptive_stats = DescriptiveStats(updated_dataframes, ['pm_25', 'pm_10'],
                                                           time_group='group_time').get_stats()
         focused_dataframe = dataframe_of_descriptive_stats[dataframe_of_descriptive_stats['variable'] == 'pm_25']
-        DispersionGraph(focused_dataframe, ['mean'], 'group_time', locations_stat_variable='004_008_011_mean_pm_25', output_directory=OUTPUT_PATH).dispersion_graph()
+        DispersionGraph(focused_dataframe, ['mean'], 'group_time', locations_stat_variable='004_008_011_mean_pm_25',
+                        output_directory=OUTPUT_PATH).dispersion_graph()
         self.assertTrue(os.path.exists(f'{OUTPUT_PATH}/Dispersion_Plot_group_time_at_004_008_011.png'))
 
 

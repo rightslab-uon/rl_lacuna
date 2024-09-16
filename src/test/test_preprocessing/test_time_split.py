@@ -12,6 +12,7 @@ dataframe = pd.read_csv(data_file)
 
 column_containing_dates = 'data_created_time'
 
+
 class MyTestCase(unittest.TestCase):
     def test_date_time_column_split(self):
         updated_dataframe = TimeSplit(dataframe, column_containing_dates).split_dataframe()
@@ -39,7 +40,8 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(group, 0)
 
     def test_night_day_grouping(self):
-        updated_dataframe = DayNightSplit(dataframe, column_containing_dates, start_of_day=7, end_of_day=20).split_dataframe()
+        updated_dataframe = DayNightSplit(dataframe, column_containing_dates, start_of_day=7,
+                                          end_of_day=20).split_dataframe()
         number_groups = updated_dataframe['group'].nunique()
         self.assertEqual(number_groups, 2)
 

@@ -6,7 +6,6 @@ from processing.box_whisker_graphs import BoxWhiskerGraph, MeltDataframe
 from preprocessing.clean_data import CleanData
 from preprocessing.time_split import TimeSplit
 
-
 CURRENT_PATH = os.getcwd()
 four_levels_up = os.path.abspath(os.path.join(CURRENT_PATH, '..', '..', '..', '..'))
 DATA_PATH = f'{four_levels_up}/Data'
@@ -51,7 +50,8 @@ class MyTestCase(unittest.TestCase):
         # Prepare data so it can be used in box and whisker
         df_melted = MeltDataframe(updated_dataframe, 'locations', 'pm_25', 'day_of_week', ['062_pm_25', '041_pm_25'],
                                   location_more_than_one=True).get_melted_dataframe()
-        BoxWhiskerGraph(df_melted, 'pm_25', 'day_of_week', multiple='locations', locations='041_062', output_directory=OUTPUT_PATH).box_whisker_graph()
+        BoxWhiskerGraph(df_melted, 'pm_25', 'day_of_week', multiple='locations', locations='041_062',
+                        output_directory=OUTPUT_PATH).box_whisker_graph()
 
         self.assertTrue(os.path.exists(f'{OUTPUT_PATH}/Box_Whisker_Plot_day_of_week_at_041_062.png'))
 
@@ -60,13 +60,15 @@ class MyTestCase(unittest.TestCase):
         # Prepare data so it can be used in box and whisker
         df_melted = MeltDataframe(updated_dataframe, 'locations', 'pm_25', 'group', ['062_pm_25', '041_pm_25'],
                                   location_more_than_one=True).get_melted_dataframe()
-        BoxWhiskerGraph(df_melted, 'pm_25', 'group', multiple='locations', locations='041_062', output_directory=OUTPUT_PATH).box_whisker_graph()
+        BoxWhiskerGraph(df_melted, 'pm_25', 'group', multiple='locations', locations='041_062',
+                        output_directory=OUTPUT_PATH).box_whisker_graph()
 
         self.assertTrue(os.path.exists(f'{OUTPUT_PATH}/Box_Whisker_Plot_group_at_041_062.png'))
 
     def test_multiple_sites_multiple_variables(self):
         updated_dataframe = TimeSplit(merged_dataframe, column_containing_dates, 1).split_dataframe()
-        focused_dataframe = updated_dataframe[['062_pm_25', '041_pm_25', '062_pm_10', '041_pm_10', '062_no2', '041_no2']]
+        focused_dataframe = updated_dataframe[
+            ['062_pm_25', '041_pm_25', '062_pm_10', '041_pm_10', '062_no2', '041_no2']]
         df_melted = focused_dataframe.melt(var_name='Pollutant', value_name='value')
         BoxWhiskerGraph(df_melted, 'value', 'Pollutant', locations='041_062_range_pollutants',
                         output_directory=OUTPUT_PATH).box_whisker_graph()
@@ -80,18 +82,21 @@ class MyTestCase(unittest.TestCase):
                         output_directory=OUTPUT_PATH).box_whisker_graph()
         self.assertTrue(os.path.exists(f'{OUTPUT_PATH}/Box_Whisker_Plot_Pollutant_at_041_062_pm_25.png'))
 
-
     def test_by_multiple_variables_one_site(self):
         updated_dataframe = TimeSplit(dataframe, column_containing_dates, 8).split_dataframe()
         melted_dataframe = MeltDataframe(updated_dataframe, 'pollutants', 'level_of_pollution',
-                                         'day_of_week', ['pm_25', 'pm_10'], dataframe_containing_device_id=updated_dataframe).get_melted_dataframe()
-        BoxWhiskerGraph(melted_dataframe, 'level_of_pollution', 'day_of_week', 'pollutants', output_directory=OUTPUT_PATH).box_whisker_graph()
-        self.assertTrue(os.path.exists(f'{OUTPUT_PATH}/Box_Whisker_Plot_day_of_week_at_276_TARA041_range_pollutants.png'))
+                                         'day_of_week', ['pm_25', 'pm_10'],
+                                         dataframe_containing_device_id=updated_dataframe).get_melted_dataframe()
+        BoxWhiskerGraph(melted_dataframe, 'level_of_pollution', 'day_of_week', 'pollutants',
+                        output_directory=OUTPUT_PATH).box_whisker_graph()
+        self.assertTrue(
+            os.path.exists(f'{OUTPUT_PATH}/Box_Whisker_Plot_day_of_week_at_276_TARA041_range_pollutants.png'))
 
     def test_one_site_multiple_variables_overall(self):
         updated_dataframe = TimeSplit(dataframe, column_containing_dates, 1).split_dataframe()
         focused_dataframe = updated_dataframe[['pm_25', 'pm_10', 'no2']]
-        df_melted = MeltDataframe(focused_dataframe, variables_name='Pollutant', values_name='value', dataframe_containing_device_id=updated_dataframe).get_melted_dataframe()
+        df_melted = MeltDataframe(focused_dataframe, variables_name='Pollutant', values_name='value',
+                                  dataframe_containing_device_id=updated_dataframe).get_melted_dataframe()
         BoxWhiskerGraph(df_melted, 'value', 'Pollutant',
                         output_directory=OUTPUT_PATH).box_whisker_graph()
         self.assertTrue(os.path.exists(f'{OUTPUT_PATH}/Box_Whisker_Plot_Pollutant_at_276_TARA041.png'))
@@ -105,6 +110,7 @@ class MyTestCase(unittest.TestCase):
         BoxWhiskerGraph(df_melted, 'value', 'Pollutant',
                         output_directory=OUTPUT_PATH).box_whisker_graph()
         self.assertTrue(os.path.exists(f'{OUTPUT_PATH}/Box_Whisker_Plot_Pollutant_at_276_TARA041.png'))
+
 
 if __name__ == '__main__':
     unittest.main()

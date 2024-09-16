@@ -5,7 +5,8 @@ from processing.Formatting import get_units, get_pollutant_name, get_who_air_qua
 
 
 class DispersionGraph:
-    def __init__(self, dataframe: pd.DataFrame, variables, x_column, locations_stat_variable=None, output_directory=None):
+    def __init__(self, dataframe: pd.DataFrame, variables, x_column, locations_stat_variable=None,
+                 output_directory=None):
         self.dataframe = dataframe.sort_values(x_column)
         self.variables = variables
         if locations_stat_variable is None:
@@ -23,10 +24,12 @@ class DispersionGraph:
         else:
             if self.locations is None:
                 variable_name = self._get_dispersion_plot()
-                plt.savefig(f'{self.output_directory}/Dispersion_Plot_{self.x_column}_{variable_name}_at_{self.device_id.replace(" | ", "_")}.png')
+                plt.savefig(
+                    f'{self.output_directory}/Dispersion_Plot_{self.x_column}_{variable_name}_at_{self.device_id.replace(" | ", "_")}.png')
             else:
                 variable_name = self._get_dispersion_plot()
-                plt.savefig(f'{self.output_directory}/Dispersion_Plot_{self.x_column}_{variable_name}_at_{self.locations}.png')
+                plt.savefig(
+                    f'{self.output_directory}/Dispersion_Plot_{self.x_column}_{variable_name}_at_{self.locations}.png')
 
             plt.close()
 
@@ -94,7 +97,3 @@ class DispersionGraph:
                 y_line = get_who_air_quality_guideline(limit)
                 name = get_pollutant_name(limit)
                 plt.axhline(y=y_line, color=colour, linestyle='--', label=f'{name} limit')
-
-
-
-

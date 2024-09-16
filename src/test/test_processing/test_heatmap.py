@@ -6,7 +6,6 @@ from processing.descriptive_stats import DescriptiveStats
 from preprocessing.time_split import TimeSplit
 from processing.heatmap import Heatmap
 
-
 CURRENT_PATH = os.getcwd()
 four_levels_up = os.path.abspath(os.path.join(CURRENT_PATH, '..', '..', '..', '..'))
 DATA_PATH = f'{four_levels_up}/Data'
@@ -41,7 +40,8 @@ class MyTestCase(unittest.TestCase):
         dataframe_of_descriptive_stats = DescriptiveStats(updated_dataframes, ['pm_25', 'pm_10'],
                                                           time_group='group_time').get_stats()
         focused_dataframe = dataframe_of_descriptive_stats[dataframe_of_descriptive_stats['variable'] == 'pm_25']
-        Heatmap(focused_dataframe, 'mean', 'device_id', 'group_time', '041_062_pm_25', output_directory=OUTPUT_PATH).heatmap_plot()
+        Heatmap(focused_dataframe, 'mean', 'device_id', 'group_time', '041_062_pm_25',
+                output_directory=OUTPUT_PATH).heatmap_plot()
         self.assertTrue(os.path.exists(f'{OUTPUT_PATH}/Heatmap_device_id_mean_at_041_062_pm_25.png'))
 
 

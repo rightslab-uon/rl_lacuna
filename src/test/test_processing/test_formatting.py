@@ -2,6 +2,7 @@ import unittest
 
 from processing import Formatting
 
+
 class MyTestCase(unittest.TestCase):
     def test_format_string(self):
         initial_string = 'hello_world'
@@ -22,6 +23,7 @@ class MyTestCase(unittest.TestCase):
         pollutant = 'mean'
         name = Formatting.get_pollutant_name(pollutant)
         self.assertEqual(name, 'Mean')
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 class DescriptiveStats:
     def __init__(self, dataframes: list, list_of_variables: list, time_group=None, output_directory=None):
         self.dataframes = dataframes
@@ -20,10 +21,10 @@ class DescriptiveStats:
                 groups = dataframe[self.time_group].unique().tolist()
                 timing = self.time_group
 
-
             device_id = dataframe['device_id'].iloc[0]
             for variable in self.list_of_variables:
                 variable_mean = self._get_stat(dataframe, timing, variable, 'mean')
+                variable_median = self._get_stat(dataframe, timing, variable, 'median')
                 variable_max = self._get_stat(dataframe, timing, variable, 'max')
                 variable_min = self._get_stat(dataframe, timing, variable, 'min')
                 variable_range = self._get_range(variable_max, variable_min)
@@ -31,11 +32,17 @@ class DescriptiveStats:
                 variable_iqr = self._get_stat(dataframe, timing, variable, 'iqr')
                 for group in range(len(groups)):
                     group_time = self._get_group_time(dataframe, group, groups)
-                    output_dictionary[f'{variable}_{group}_{device_id}'] = {'device_id': device_id, 'variable': variable,
-                                                                            'group': group, f'{timing}': group_time, 'mean': variable_mean[group],
-                                                                'max': variable_max[group], 'min': variable_min[group],
-                                                                'range': variable_range[group], 'std': variable_std[group],
-                                                                'iqr': variable_iqr[group]}
+                    output_dictionary[f'{variable}_{group}_{device_id}'] = {'device_id': device_id,
+                                                                            'variable': variable,
+                                                                            'group': group,
+                                                                            f'{timing}': group_time,
+                                                                            'mean': variable_mean[group],
+                                                                            'median': variable_median[group],
+                                                                            'max': variable_max[group],
+                                                                            'min': variable_min[group],
+                                                                            'range': variable_range[group],
+                                                                            'std': variable_std[group],
+                                                                            'iqr': variable_iqr[group]}
 
         output_dataframe = self._dictionary_to_dataframe(output_dictionary)
 
@@ -71,7 +78,7 @@ class DescriptiveStats:
 
     def _get_stat(self, dataframe, group, variable, stat):
         if stat != 'iqr':
-            dataframe_stat =  dataframe.groupby(group).agg({variable: stat}).reset_index()
+            dataframe_stat = dataframe.groupby(group).agg({variable: stat}).reset_index()
         else:
             dataframe_stat = dataframe.groupby(group).agg({variable: self._iqr}).reset_index()
         return self._extract_relevant_outcomes_from_dataframe(dataframe_stat, variable)
@@ -90,4 +97,3 @@ class DescriptiveStats:
     @staticmethod
     def _extract_relevant_outcomes_from_dataframe(dataframe, variable):
         return dataframe[variable].to_list()
-

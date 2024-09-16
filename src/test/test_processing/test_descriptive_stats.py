@@ -25,6 +25,7 @@ OUTPUT_PATH = f'{four_levels_up}/Coding/outputs'
 
 column_containing_dates = 'data_created_time'
 
+
 class MyTestCase(unittest.TestCase):
     def test_dataframe(self):
         self.assertIsInstance(dataframe, pd.DataFrame)
@@ -41,7 +42,7 @@ class MyTestCase(unittest.TestCase):
     def test_returns_mean_of_first_variable(self):
         dataframe_of_descriptive_stats = DescriptiveStats([dataframe], ['pm_25', 'pm_10']).get_stats()
         mean = dataframe_of_descriptive_stats['mean'].iloc[0]
-        self.assertEqual(round(mean,3), 61.714)
+        self.assertEqual(round(mean, 3), 61.714)
 
     def test_returns_mean_of_second_variable(self):
         dataframe_of_descriptive_stats = DescriptiveStats([dataframe], ['pm_25', 'pm_10']).get_stats()
@@ -53,18 +54,23 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(os.path.exists(f'{OUTPUT_PATH}/descriptive_stats_276_TARA041_groups_1.csv'))
 
     def test_returns_descriptive_stats_by_two_time_categories(self):
-        updated_dataframe = DayNightSplit(dataframe, column_containing_dates, start_of_day=7, end_of_day=20).split_dataframe()
-        dataframe_of_descriptive_stats = DescriptiveStats([updated_dataframe], ['pm_25', 'pm_10'], output_directory=OUTPUT_PATH, time_group='group').get_stats()
+        updated_dataframe = DayNightSplit(dataframe, column_containing_dates, start_of_day=7,
+                                          end_of_day=20).split_dataframe()
+        dataframe_of_descriptive_stats = DescriptiveStats([updated_dataframe], ['pm_25', 'pm_10'],
+                                                          output_directory=OUTPUT_PATH, time_group='group').get_stats()
         mean = dataframe_of_descriptive_stats['mean'].iloc[2]
         self.assertEqual(round(mean, 3), 94.474)
 
     def test_returns_descriptive_stats_by_several_time_categories(self):
         updated_dataframe = TimeSplit(dataframe, column_containing_dates, 8).split_dataframe()
-        dataframe_of_descriptive_stats = DescriptiveStats([updated_dataframe], ['pm_25', 'pm_10'], output_directory=OUTPUT_PATH, time_group='group_time').get_stats()
+        dataframe_of_descriptive_stats = DescriptiveStats([updated_dataframe], ['pm_25', 'pm_10'],
+                                                          output_directory=OUTPUT_PATH,
+                                                          time_group='group_time').get_stats()
         self.assertEqual(len(dataframe_of_descriptive_stats['mean']), 16)
 
     def test_descriptive_stats_multiple_locations(self):
-        dataframe_of_descriptive_stats = DescriptiveStats(dataframes, ['pm_25'], output_directory=OUTPUT_PATH).get_stats()
+        dataframe_of_descriptive_stats = DescriptiveStats(dataframes, ['pm_25'],
+                                                          output_directory=OUTPUT_PATH).get_stats()
         self.assertEqual(len(dataframe_of_descriptive_stats['mean']), 3)
 
     def test_descriptive_stats_multiple_locations_multiple_variables(self):
@@ -77,12 +83,14 @@ class MyTestCase(unittest.TestCase):
         for frame in dataframes:
             updated_dataframes.append(TimeSplit(frame, column_containing_dates, 8).split_dataframe())
         dataframe_of_descriptive_stats = DescriptiveStats(updated_dataframes, ['pm_25', 'pm_10'],
-                                                          output_directory=OUTPUT_PATH, time_group='group_time').get_stats()
+                                                          output_directory=OUTPUT_PATH,
+                                                          time_group='group_time').get_stats()
         self.assertEqual(len(dataframe_of_descriptive_stats['mean']), 48)
 
     def test_output_dataframe_contains_group_time(self):
         dataframe_of_descriptive_stats = DescriptiveStats([dataframe], ['pm_25']).get_stats()
         self.assertIn('group', dataframe_of_descriptive_stats.columns)
+
 
 if __name__ == '__main__':
     unittest.main()
