@@ -38,12 +38,12 @@ class BoxWhiskerGraph:
 
     def _get_box_whisker_plot(self):
         sns.set_theme(style="ticks", palette="pastel")
+        sns.set(font="DejaVu Sans")
         if self.multiple is None:
             dataframe_cleaned = self.dataframe.dropna(subset=[self.x_column, self.variable])
             sns.boxplot(x=self.x_column, y=self.variable, data=dataframe_cleaned)
         else:
             sns.boxplot(x=self.x_column, y=self.variable, hue=self.multiple, data=self.dataframe)
-
         plt.suptitle('')  # Suppress the default title to avoid duplication
         if self.x_column == 'day_of_week':
             x_column_name = 'Week Day'
