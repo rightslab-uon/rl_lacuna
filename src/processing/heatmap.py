@@ -35,9 +35,10 @@ class Heatmap:
         category_order.sort()
         self.dataframe[self.y_column] = pd.Categorical(self.dataframe[self.y_column], categories=category_order,
                                                        ordered=True)
-        heatmap_data = self.dataframe.pivot(index=self.x_column, columns=self.y_column, values=self.variable)
+        self.dataframe = self.dataframe.sort_values(by=self.y_column).reset_index(drop=True)
+        heatmap_data = self.dataframe.pivot(index=self.y_column, columns=self.x_column, values=self.variable)
         sns.heatmap(heatmap_data, cmap='coolwarm', annot=True)
-        plt.xlabel('Place')
-        plt.ylabel('Time')
+        plt.xlabel('Time')
+        plt.ylabel('Place')
         plt.xticks(rotation=45)
         plt.tight_layout()
