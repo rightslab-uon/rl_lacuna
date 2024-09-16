@@ -8,7 +8,12 @@ from processing.Formatting import format_string, get_units, get_pollutant_name, 
 class BoxWhiskerGraph:
     def __init__(self, dataframe: pd.DataFrame, variable: str, x_column: str, multiple=None, locations=None,
                  output_directory=None):
-        self.dataframe = dataframe.sort_values(x_column)
+        if x_column == 'day_of_week':
+            order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+            dataframe[x_column] = pd.Categorical(dataframe[x_column], categories=order, ordered=True)
+            self.dataframe = dataframe
+        else:
+            self.dataframe = dataframe.sort_values(x_column)
         self.variable = variable
         if locations is None:
             self.device_id = dataframe['device_id'].iloc[0]
