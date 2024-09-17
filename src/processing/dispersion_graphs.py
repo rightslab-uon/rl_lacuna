@@ -59,7 +59,8 @@ class DispersionGraph:
     def _plot_multiple_locations_one_variable(self, variable, variable_name, variable_units):
         _, ax = plt.subplots()
         for key, grp in self.dataframe.groupby(['device_id']):
-            ax.scatter(grp[self.x_column], grp[variable] * len(grp), label=key)
+            name = key[0]
+            ax.scatter(grp[self.x_column], grp[variable] * len(grp), label=name)
         if variable_units == '':
             plt.ylabel(f'Pollutant {variable_name}')
         plt.ylabel(f'{variable} {variable_name} ({variable_units})')
